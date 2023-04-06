@@ -1,4 +1,5 @@
 #include "crypto.h"
+#include <time.h>
 
 int main(int argv, char *argc[])
 {
@@ -8,7 +9,9 @@ int main(int argv, char *argc[])
     printf("Creating a public prime like this for diffie hellman is not\n");
     printf("something you should do everytime you establish a new\n");
     printf("connection. The G key however should be generated everytime.\n");
+    time_t start = clock();
     Generate_Big_P(&P);
+    time_t end = clock() - start;
     printf("Generating G\n");
     Generate_G_Client(P, &G);
     printf("Generating priv keys\n");
@@ -35,12 +38,19 @@ int main(int argv, char *argc[])
         printf("%d", key2[i]);
     }
     printf("\n");
+    printf("As you can see, the keys resulting from the key exchange are the\n");
+    printf("same. As the result of diffie-hellman will provide a shared key between\n");
+    printf("without sharing a secret key. In this case, the secret key was variable 'a'\n");
+    printf("for one user and variable 'b' for the other user. 'x' and 'y' were the\n");
+    printf("respective public key that was shared with the other user.\n");
+    printf("\nNow the encrytion begins\n");
 
     char out[32];
     char buffer[32] = "encryption is fun:(";
     printf("before: %s\n", buffer);
     unsigned char iv[AES_BLOCK_SIZE];
     memset(iv, 0x00, sizeof iv);
+    printf("User 1 is encrypting with key 1...\n");
     encrypt(buffer, key1, out, 32);
     printf("encrypted: ");
     for(int i = 0; i < 32; i++)
@@ -49,6 +59,7 @@ int main(int argv, char *argc[])
     }
     printf("\n");
     char deca_out[32];
+    printf("User 2 is decrypting with key 2...\n");
     decrypt(out, key2, deca_out, 32);
     printf("decrypted: %s\n", deca_out);
     
