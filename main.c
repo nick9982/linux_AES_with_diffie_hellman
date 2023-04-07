@@ -6,8 +6,8 @@ int main(int argv, char *argc[])
     printf("Generating P(be patient, this could take up to 5 minutes).\n");
     printf("Generating a random 2048-bit prime is a strenuous process.\n");
     printf("Creating a public prime like this for diffie hellman is not\n");
-    printf("something you should do everytime you establish a new connection\n");
-    printf("data. The G key however should be generated everytime.\n");
+    printf("something you should do everytime you establish a new\n");
+    printf("connection. The G key however should be generated everytime.\n");
     Generate_Big_P(&P);
     printf("Generating G\n");
     Generate_G_Client(P, &G);
