@@ -1,5 +1,4 @@
 #include "crypto.h"
-#include <time.h>
 
 int main(int argv, char *argc[])
 {
