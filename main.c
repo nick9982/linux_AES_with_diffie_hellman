@@ -38,12 +38,7 @@ int main(int argv, char *argc[])
 
     char out[32];
     char buffer[32] = "encryption is fun:(";
-    printf("before: ");
-    for(int i = 0; i < 32; i++)
-    {
-        printf("%d", (unsigned char)buffer[i]);
-    }
-    printf("\n");
+    printf("before: %s\n", buffer);
     unsigned char iv[AES_BLOCK_SIZE];
     memset(iv, 0x00, sizeof iv);
     encrypt(buffer, key1, out, 32);
@@ -55,12 +50,7 @@ int main(int argv, char *argc[])
     printf("\n");
     char deca_out[32];
     decrypt(out, key2, deca_out, 32);
-    printf("decrypted: ");
-    for(int i = 0; i < 32; i++)
-    {
-        printf("%d", (unsigned char)deca_out[i]);
-    }
-    printf("\n");
+    printf("decrypted: %s\n", deca_out);
     
     mpz_clears(P, G, a, b, x, y, NULL);
 
