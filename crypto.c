@@ -99,7 +99,7 @@ int isPrime(mpz_t *P)
     {
         mpz_clear(t);
         mpz_init_set_ui(t, primes[i]);
-        if(mpz_cmp((*P), t) == 0) //These do not work
+        if(mpz_cmp((*P), t) == 0)
         {
             mpz_clear(t);
             mpz_clear(r);
@@ -107,7 +107,7 @@ int isPrime(mpz_t *P)
         }
         mpz_init(r);
         mpz_tdiv_r(r, (*P), t);
-        if(mpz_cmp_ui(r, 0) == 0) //These do not work
+        if(mpz_cmp_ui(r, 0) == 0)
         {
             mpz_clear(t);
             mpz_clear(r);
